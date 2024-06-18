@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photometry Plot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Photometry Plot</h1>
+    <img src="{{ url_for('static', filename=plot_url) }}" alt="Photometry Plot">
+    <a href="{{ url_for('create_main') }}">Back to Main</a>
+</body>
+</html>

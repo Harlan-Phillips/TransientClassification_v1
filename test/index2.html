@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Source Web App {% endblock %}</h1>
+    <table border="4">
+        <tr>
+            <th>Object ID</th>
+            <th>RA</th>
+            <th>DEC</th>
+            <th>Redshift</th>
+            <th>Transient</th>
+            <th>Variable Star</th>
+            <th>Is Roid</th>
+        </tr>
+        {% for source in source_data %}
+            <tr>
+                <td>{{ source['obj_id'] }}</td>
+                <td>{{ source['ra'] }}</td>
+                <td>{{ source['dec'] }}</td>
+                <td>{{ source['redshift'] }}</td>
+                <td>{{ source['transient'] }}</td>
+                <td>{{ source['varstar'] }}</td>
+                <td>{{ source['is_roid'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

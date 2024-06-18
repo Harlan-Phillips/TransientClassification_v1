@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - Volatility Rank -</title>
+    <style> 
+        .volatilityData {
+            padding: 10px;
+            margin: 5px; 
+            background-color: #f3f3f3;
+        }
+
+        nav a {
+            color: #1b50cc;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('create_main') }}">Home</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

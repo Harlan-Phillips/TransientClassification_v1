@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Source Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Recent Source Data</h1>
+    <form action="{{ url_for('add_source_data') }}" method="get">
+        <button type="submit">Fetch New Sources</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Object ID</th>
+                <th>RA</th>
+                <th>Dec</th>
+                <th>Redshift</th>
+                <th>Transient</th>
+                <th>Variable Star</th>
+                <th>Asteroid</th>
+                <th>Discovery Date (MJD)</th>
+                <th>Photometry Plot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for source in source_data %}
+            <tr>
+                <td><a href="{{ url_for('classify', source_id=source.obj_id) }}">{{ source.obj_id }}</a></td>
+                <td>{{ source.ra }}</td>
+                <td>{{ source.dec }}</td>
+                <td>{{ source.redshift }}</td>
+                <td>{{ source.transient }}</td>
+                <td>{{ source.varstar }}</td>
+                <td>{{ source.is_roid }}</td>
+                <td>{{ source.mjd }}</td>
+                <td>
+                    {% if source.obj_id in plot_files %}
+                        <img src="{{ url_for('static', filename=plot_files[source.obj_id]) }}" alt="Plot for {{ source.obj_id }}" width="300">
+                    {% else %}
+                        No plot available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
